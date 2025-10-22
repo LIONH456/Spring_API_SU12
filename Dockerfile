@@ -28,6 +28,9 @@ ENV SPRING_PROFILES_ACTIVE=render
 ENV JAVA_OPTS=""
 WORKDIR /app
 
+# Create static directory for file uploads
+RUN mkdir -p /app/myapp/static
+
 # Copy built jar
 COPY --from=build /workspace/build/libs/*.jar /app/app.jar
 

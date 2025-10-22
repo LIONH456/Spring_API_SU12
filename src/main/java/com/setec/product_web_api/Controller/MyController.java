@@ -89,7 +89,7 @@ public class MyController {
 	public Object deleteById(@PathVariable("id") Integer id) {
 		var p = productRepo.findById(id);
 		if (p.isPresent()) {
-			new File("myApp/" + p.get().getImageUrl()).delete();
+			new File("myapp/" + p.get().getImageUrl()).delete();
 			productRepo.delete(p.get());
 			return ResponseEntity.status(HttpStatus.ACCEPTED)
 					.body(Map.of("message", "product id = " + id + " has been deleted"));
@@ -119,7 +119,7 @@ public class MyController {
 				String fileName = UUID.randomUUID() + "-" + extension;
 				String filePath = Paths.get(uploadDir, fileName).toString();
 				
-				new File("myApp/" + update.getImageUrl()).delete();
+				new File("myapp/" + update.getImageUrl()).delete();
 				file.transferTo(new File(filePath));
 				update.setImageUrl("/static/" + fileName);
 			}
